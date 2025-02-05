@@ -52,6 +52,11 @@ function App() {
         );
 
         const fetchedImages = response.data.results;
+
+        if (fetchedImages.length === 0 && page === 1) {
+          toast.error(`No images found for "${searchQuery}"`);
+        }
+
         setImages((prevImages) => [...prevImages, ...fetchedImages]);
       } catch (err) {
         setError(err.message || "Something went wrong");
@@ -79,21 +84,16 @@ function App() {
 
   return (
     <div>
-      <Toaster position="top-right" />
+      <Toaster position="top-center" reverseOrder={false} />
       <SearchBar onSubmit={handleSearch} />
-
       {error && <ErrorMessage message={error} />}
-
       {images.length > 0 && (
         <ImageGallery images={images} onImageClick={openModal} />
       )}
-
       {loading && <Loader />}
-
       {!loading && images.length > 0 && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-
       {showModal && (
         <ImageModal
           isOpen={showModal}
