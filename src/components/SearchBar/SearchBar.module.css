@@ -1,0 +1,21 @@
+.header {
+  padding: 15px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.form {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.input {
+  width: 250px;
+  padding: 8px;
+  outline: none;
+}
+
+.button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
