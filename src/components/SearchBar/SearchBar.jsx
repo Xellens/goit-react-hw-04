@@ -1,6 +1,8 @@
 import { useState } from "react";
-import s from "./SearchBar.module.css";
 import PropTypes from "prop-types";
+import { toast } from "react-hot-toast";
+
+import s from "./SearchBar.module.css";
 
 function SearchBar({ onSubmit }) {
   const [searchValue, setSearchValue] = useState("");
@@ -11,7 +13,14 @@ function SearchBar({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (searchValue.trim() === "") {
+      toast.error("Please enter something to search.");
+      return;
+    }
+
     onSubmit(searchValue);
+    setSearchValue("");
   };
 
   return (

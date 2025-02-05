@@ -1,5 +1,5 @@
-import s from "./ImageCard.module.css";
 import PropTypes from "prop-types";
+import s from "./ImageCard.module.css";
 
 function ImageCard({ image, onClick }) {
   const { urls, alt_description } = image;
@@ -9,11 +9,12 @@ function ImageCard({ image, onClick }) {
   };
 
   return (
-    <div className={s.card} onClick={handleClick}>
+    <div className={s.card}>
       <img
         src={urls.small}
         alt={alt_description || "image"}
         className={s.image}
+        onClick={handleClick}
       />
     </div>
   );
